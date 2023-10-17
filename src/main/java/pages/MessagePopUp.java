@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,5 +20,22 @@ public class MessagePopUp extends BasicPage {
     }
     public void closeButton () {
         driver.findElement(By.xpath("//*[@id='app']/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/button/span"));
+    }
+    public WebElement verifyAccountDialog() {
+        return driver.findElement(By.className("dlgVerifyAccount"));
+    }
+    public void waitForVerifyMessageToBeVisible() {
+        wait
+                .withMessage("Verify popup is not presented")
+                .until(ExpectedConditions.visibilityOf(verifyAccountDialog()));
+    }
+    public String verifyAccountMessage() {
+        return verifyAccountDialog().getText();
+    }
+    public WebElement verifyDialogCloseButton() {
+        return driver.findElement(By.className("btnClose"));
+    }
+    public void clickOnVerifyDialogCloseButton() {
+        verifyDialogCloseButton().click();
     }
 }
