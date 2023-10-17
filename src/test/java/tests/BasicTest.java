@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
 import pages.MessagePopUp;
 import pages.NavPage;
+import pages.SignupPage;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -24,6 +25,7 @@ public abstract class BasicTest {
     protected LoginPage loginPage;
     protected NavPage navPage;
     protected MessagePopUp messagePopUp;
+    protected SignupPage signupPage;
     @BeforeClass
     public void setup () {
         driver = new ChromeDriver();
@@ -34,6 +36,7 @@ public abstract class BasicTest {
         loginPage = new LoginPage(driver, wait);
         navPage = new NavPage(driver, wait);
         messagePopUp = new MessagePopUp(driver, wait);
+        signupPage = new SignupPage(driver,wait);
 
     }
     @BeforeMethod
