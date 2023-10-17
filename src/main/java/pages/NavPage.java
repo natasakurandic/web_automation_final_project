@@ -36,4 +36,15 @@ public class NavPage extends BasicPage {
                 .withMessage("Logout button is not visible")
                 .until(ExpectedConditions.visibilityOf(logoutButton()));
     }
+    public WebElement signupButton () {
+        return driver.findElement(By.xpath("//*[@id='app']/div[1]/div/header/div/div[3]/a[4]"));
+    }
+    public void clickOnSignupButton () {
+        signupButton().click();
+    }
+    public void waitUntilCurrentUrlContainsSignup() {
+        wait
+                .withMessage("Current Url should contain 'signup'")
+                .until(ExpectedConditions.urlContains("signup"));
+    }
 }
