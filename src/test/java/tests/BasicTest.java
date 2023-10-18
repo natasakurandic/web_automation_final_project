@@ -8,10 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import pages.LoginPage;
-import pages.MessagePopUp;
-import pages.NavPage;
-import pages.SignupPage;
+import pages.*;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -26,6 +23,7 @@ public abstract class BasicTest {
     protected NavPage navPage;
     protected MessagePopUp messagePopUp;
     protected SignupPage signupPage;
+    protected CitiesPage citiesPage;
     @BeforeClass
     public void setup () {
         driver = new ChromeDriver();
@@ -37,6 +35,8 @@ public abstract class BasicTest {
         navPage = new NavPage(driver, wait);
         messagePopUp = new MessagePopUp(driver, wait);
         signupPage = new SignupPage(driver,wait);
+        citiesPage = new CitiesPage(driver, wait);
+
 
     }
     @BeforeMethod
