@@ -34,4 +34,27 @@ public class CitiesPage extends BasicPage{
     public void clickOnDialogSaveButton() {
         dialogSaveButton().click();
     }
+    public WebElement searchCityInput() {
+        return driver.findElement(By.id("search"));
+    }
+    public void typeSearchCityInput(String citiesName) {
+        searchCityInput().sendKeys(citiesName);
+    }
+    public void waitForNumberOfTableRows(int numberOfRows){
+        wait
+                .withMessage("Number of rows should be " + numberOfRows)
+                .until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("tbody>tr"), numberOfRows));
+    }
+    public WebElement getEditButtonTableRow(int row){
+        return driver.findElements(By.id("edit")).get(row-1);
+    }
+    public void clickOnEditButtonFromTableRow(int row){
+        getEditButtonTableRow(row).click();
+    }
+//    public WebElement editCityName() {
+//        return driver.findElement(By.id("name"));
+//    }
+    public void typeEditCityInput(String newCityName) {
+        citiesNameInput().sendKeys(newCityName);
+    }
 }

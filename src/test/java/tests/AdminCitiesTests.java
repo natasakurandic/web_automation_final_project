@@ -42,4 +42,19 @@ public class AdminCitiesTests extends BasicTest{
         Assert.assertTrue(messagePopUp.successMessageDialog().getText().contains("Saved successfully"),
                 "Success message should contain text: 'Saved successfully'");
     }
+    @Test(priority = 4, retryAnalyzer = RetryAnalyzerDaniel.class)
+    public void editCity() {
+        String oldCityName = "Nis";
+        String newCityName = "Naisus";
+        navPage.clickOnAdminButton();
+        navPage.clickOnCitiesButton();
+        citiesPage.typeSearchCityInput(oldCityName);
+        citiesPage.waitForNumberOfTableRows(1);
+        citiesPage.clickOnEditButtonFromTableRow(1);
+        citiesPage.typeEditCityInput(newCityName);
+        citiesPage.clickOnDialogSaveButton();
+        messagePopUp.waitForSuccessPopup();
+        Assert.assertTrue(messagePopUp.successMessageDialog().getText().contains("Saved successfully"),
+                "Success message should contain text: 'Saved successfully'");
+    }
 }
