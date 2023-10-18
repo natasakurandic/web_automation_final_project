@@ -24,4 +24,14 @@ public class CitiesPage extends BasicPage{
     public WebElement citiesNameInput() {
         return driver.findElement(By.id("name"));
     }
+    public void clearEndTypeCitiesNameField(String citiesName) {
+        citiesNameInput().clear();
+        citiesNameInput().sendKeys(citiesName);
+    }
+    public WebElement dialogSaveButton() {
+        return driver.findElement(By.className("btnSave"));
+    }
+    public void clickOnDialogSaveButton() {
+        dialogSaveButton().click();
+    }
 }

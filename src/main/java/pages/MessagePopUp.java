@@ -38,4 +38,13 @@ public class MessagePopUp extends BasicPage {
     public void clickOnVerifyDialogCloseButton() {
         verifyDialogCloseButton().click();
     }
+
+    public WebElement successMessageDialog() {
+        return driver.findElement(By.xpath("//*[@id='app']/div[1]/main/div/div[2]/div/div[3]/div/div/div/div"));
+    }
+    public void waitForSuccessPopup() {
+    wait
+            .withMessage("Success popup dialog is not visible")
+            .until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
+    }
 }
