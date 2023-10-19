@@ -17,8 +17,14 @@ public class NavPage extends BasicPage {
     public void languageButton () {
         driver.findElement(By.cssSelector("#app > div > div > header > div > div.v-toolbar__items > button")).click();
     }
+    public void languageEs () {
+        driver.findElement(By.className("btnES")).click();
+    }
+    public void waitForDropDownMenuVisibility() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='app']/div[2]")));
+    }
     public void languageEn () {
-        driver.findElement(By.cssSelector("#list-item-73")).click();
+        driver.findElement(By.cssSelector("btnEN")).click();
     }
     public void waitUntilCurrentUrlContainsHome() {
         wait
