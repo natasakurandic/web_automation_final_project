@@ -24,6 +24,7 @@ public abstract class BasicTest {
     protected MessagePopUp messagePopUp;
     protected SignupPage signupPage;
     protected CitiesPage citiesPage;
+    protected LandingPage landingPage;
     @BeforeClass
     public void setup () {
         driver = new ChromeDriver();
@@ -36,7 +37,7 @@ public abstract class BasicTest {
         messagePopUp = new MessagePopUp(driver, wait);
         signupPage = new SignupPage(driver,wait);
         citiesPage = new CitiesPage(driver, wait);
-
+        landingPage = new LandingPage(driver, wait);
 
     }
     @BeforeMethod
