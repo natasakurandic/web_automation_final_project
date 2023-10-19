@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,7 +26,7 @@ public class CitiesPage extends BasicPage{
         return driver.findElement(By.id("name"));
     }
     public void clearEndTypeCitiesNameField(String citiesName) {
-        citiesNameInput().clear();
+        citiesNameInput().sendKeys(Keys. DELETE);
         citiesNameInput().sendKeys(citiesName);
     }
     public WebElement dialogSaveButton() {
@@ -38,6 +39,7 @@ public class CitiesPage extends BasicPage{
         return driver.findElement(By.id("search"));
     }
     public void typeSearchCityInput(String citiesName) {
+        searchCityInput().clear();
         searchCityInput().sendKeys(citiesName);
     }
     public void waitForNumberOfTableRows(int numberOfRows){
@@ -45,16 +47,19 @@ public class CitiesPage extends BasicPage{
                 .withMessage("Number of rows should be " + numberOfRows)
                 .until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("tbody>tr"), numberOfRows));
     }
-    public WebElement getEditButtonTableRow(int row){
+    public WebElement editButtonTableRow(int row){
         return driver.findElements(By.id("edit")).get(row-1);
     }
     public void clickOnEditButtonFromTableRow(int row){
-        getEditButtonTableRow(row).click();
+        editButtonTableRow(row).click();
     }
-//    public WebElement editCityName() {
-//        return driver.findElement(By.id("name"));
-//    }
     public void typeEditCityInput(String newCityName) {
-        citiesNameInput().sendKeys(newCityName);
+        citiesNameInput().sendKeys(Keys.chord(Keys.CONTROL, "a"), newCityName);
+    }
+    public WebElement getFieldFromTableRow(int row, int column){
+        return driver.findElement(By.xpath("//tbody/tr["+row+"]/td["+column+"]"));
+    }
+    public String getTextFromField(int row, int column){
+        return getFieldFromTableRow(row,column).getText();
     }
 }

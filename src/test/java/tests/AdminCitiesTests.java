@@ -44,11 +44,11 @@ public class AdminCitiesTests extends BasicTest{
     }
     @Test(priority = 4, retryAnalyzer = RetryAnalyzerDaniel.class)
     public void editCity() {
-        String oldCityName = "Nis";
-        String newCityName = "Naisus";
+        String cityName = "Nis";
+        String newCityName = "Novi Sad";
         navPage.clickOnAdminButton();
         navPage.clickOnCitiesButton();
-        citiesPage.typeSearchCityInput(oldCityName);
+        citiesPage.typeSearchCityInput(cityName);
         citiesPage.waitForNumberOfTableRows(1);
         citiesPage.clickOnEditButtonFromTableRow(1);
         citiesPage.typeEditCityInput(newCityName);
@@ -56,5 +56,15 @@ public class AdminCitiesTests extends BasicTest{
         messagePopUp.waitForSuccessPopup();
         Assert.assertTrue(messagePopUp.successMessageDialog().getText().contains("Saved successfully"),
                 "Success message should contain text: 'Saved successfully'");
+    }
+    @Test(priority = 5, retryAnalyzer = RetryAnalyzerDaniel.class)
+    public void searchCity() {
+        String newCityName = "Novi Sad";
+        navPage.clickOnAdminButton();
+        navPage.clickOnCitiesButton();
+        citiesPage.typeSearchCityInput(newCityName);
+        citiesPage.waitForNumberOfTableRows(1);
+        Assert.assertEquals(citiesPage.getTextFromField(1,2), newCityName,
+                "City in the name field should be " + newCityName);
     }
 }
