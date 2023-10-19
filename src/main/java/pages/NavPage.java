@@ -24,7 +24,7 @@ public class NavPage extends BasicPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='app']/div[2]")));
     }
     public void languageEn () {
-        driver.findElement(By.cssSelector("btnEN")).click();
+        driver.findElement(By.className("btnEN")).click();
     }
     public void waitUntilCurrentUrlContainsHome() {
         wait
