@@ -31,7 +31,7 @@ public class AdminCitiesTests extends BasicTest{
     }
     @Test(priority = 3, retryAnalyzer = RetryAnalyzerDaniel.class)
     public void createNewCity() {
-        String cityName = "Nis";
+        String cityName = "Madrid";
         navPage.clickOnAdminButton();
         navPage.clickOnCitiesButton();
         citiesPage.clickOnNewItemButton();
@@ -44,8 +44,8 @@ public class AdminCitiesTests extends BasicTest{
     }
     @Test(priority = 4, retryAnalyzer = RetryAnalyzerDaniel.class)
     public void editCity() {
-        String cityName = "Nis";
-        String newCityName = "Novi Sad";
+        String cityName = "Madrid";
+        String newCityName = "Barcelona";
         navPage.clickOnAdminButton();
         navPage.clickOnCitiesButton();
         citiesPage.typeSearchCityInput(cityName);
@@ -59,12 +59,28 @@ public class AdminCitiesTests extends BasicTest{
     }
     @Test(priority = 5, retryAnalyzer = RetryAnalyzerDaniel.class)
     public void searchCity() {
-        String newCityName = "Novi Sad";
+        String newCityName = "Barcelona";
         navPage.clickOnAdminButton();
         navPage.clickOnCitiesButton();
         citiesPage.typeSearchCityInput(newCityName);
         citiesPage.waitForNumberOfTableRows(1);
         Assert.assertEquals(citiesPage.getTextFromField(1,2), newCityName,
                 "City in the name field should be " + newCityName);
+    }
+    @Test(priority = 6, retryAnalyzer = RetryAnalyzerDaniel.class)
+    public void deleteCity() {
+        String newCityName = "Barcelona";
+        navPage.clickOnAdminButton();
+        navPage.clickOnCitiesButton();
+        citiesPage.typeSearchCityInput(newCityName);
+        citiesPage.waitForNumberOfTableRows(1);
+        Assert.assertEquals(citiesPage.getTextFromField(1,2), newCityName,
+                "City in the name field should be " + newCityName);
+        citiesPage.clickOnDeleteButtonFromTable(1);
+        citiesPage.deleteDialogVisible();
+        citiesPage.clickOnDialogDeleteButton();
+        messagePopUp.waitForSuccessPopup();
+        Assert.assertTrue(messagePopUp.successMessageDialog().getText().contains("Deleted successfully"),
+                "Success message should contain text: 'Saved successfully'");
     }
 }
