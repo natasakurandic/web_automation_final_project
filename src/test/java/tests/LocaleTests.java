@@ -27,4 +27,11 @@ public class LocaleTests extends BasicTest{
         navPage.languageCn();
         Assert.assertEquals(landingPage.textFromLandingPageTitle(), "首页");
     }
+    @Test(priority = 4, retryAnalyzer = RetryAnalyzerDaniel.class)
+    public void setLocaleToFR() {
+        navPage.languageButton();
+        navPage.waitForDropDownMenuVisibility();
+        navPage.languageFr();
+        Assert.assertEquals(landingPage.textFromLandingPageTitle(), "Page d'atterrissage");
+    }
 }

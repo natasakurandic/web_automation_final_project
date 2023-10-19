@@ -29,6 +29,9 @@ public class NavPage extends BasicPage {
     public void languageCn () {
         driver.findElement(By.className("btnCN")).click();
     }
+    public void languageFr () {
+        driver.findElement(By.className("btnFR")).click();
+    }
     public void waitUntilCurrentUrlContainsHome() {
         wait
                 .withMessage("Current Url should contain 'home'")
